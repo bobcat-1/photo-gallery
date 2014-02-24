@@ -1,0 +1,14 @@
+.photo {
+	border: solid 1px grey;
+    border-radius: 2px;
+	width: 100%;
+	padding: 0 0 15px 0;
+}
+.photo_picture {
+	position: relative;
+}
+.photo_description {
+	font-size: 0.8em;
+	color: grey;
+	padding: 15px;
+}

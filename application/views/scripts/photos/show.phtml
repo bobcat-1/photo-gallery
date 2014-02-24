@@ -1,0 +1,18 @@
+<?php 
+echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/photo.css');
+echo $this->headScript()->appendFile($this->baseUrl().'/js/photo.js', 'text/javascript')
+                   ->appendScript($onloadScript);
+?>
+<div class="photo">
+	<div class="photo_description">
+		Заголовок: <?php echo $this->escape($this->photo->title);?><br/>
+		Адрес фото: <?php echo $this->escape($this->photo->address_photo);?><br />
+		Создано: <?php echo date("H:i:s F,d Y", $this->escape($this->photo->creation_date));?>
+		<a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'edit', 'id' => $this->photo->id)) ?>">Редактировать</a>
+		<?php echo " | ";?>
+		<a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'delete', 'id' => $this->photo->id)) ?>">Удалить</a>
+	</div>
+	<a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'index', 'album_id' => $this->escape($this->photo->album_id), 'id' => null)) ?>">
+		<img class="photo_picture" src="<?php echo $this->baseUrl();?>/images/<?php echo $this->escape($this->photo->filename);?>" alt="picture" onload="resize(this)"/>
+	</a>
+</div>

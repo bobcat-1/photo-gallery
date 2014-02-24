@@ -1,0 +1,26 @@
+.photo {
+	width: 250px;
+	float: left;
+	margin: 5px;
+}
+.photo_top {
+	text-align: center;
+	color: grey;
+	font-size: 0.8em;
+	height: 35px;
+}
+.photo_picture_border {
+	width: 250px;
+	height: 250px;			
+}
+.photo_picture {			
+	position: relative;
+}
+.photo_bottom {
+	text-align: center;
+	color: grey;
+	font-size: 0.7em;
+	width: 250px;
+	height: 40px;	
+}
+

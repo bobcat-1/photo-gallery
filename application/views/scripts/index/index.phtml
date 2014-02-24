@@ -1,0 +1,51 @@
+<?php 
+echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/albums.css');
+echo $this->headScript()->appendFile($this->baseUrl().'/js/albums.js', 'text/javascript')
+                   ->appendScript($onloadScript);
+?>
+
+
+
+
+<p><a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'add')) ?>">Добавить новый альбом</a></p>
+
+<p><a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'add')) ?>">Добавить фотографию в галерею</a></p>
+
+<?php foreach($this->albums as $album) : ?>
+<div class="album">
+	<div class="album_description">
+		<a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'index', 'album_id' => $album->id)) ?>">
+			<?php echo $this->escape($album->name) ?></a>
+
+		<a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'edit', 'id' => $album->id)) ?>">Редактировать</a>
+		
+		<?php echo " | " ?>
+		
+		<a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'delete', 'id' => $album->id)) ?>">Удалить</a>
+
+		<table class="album_description_table">
+			<tr><td>Описание</td><td><?php echo $this->escape($album->description) ?></td></tr>
+			<tr><td>Имя фотографа</td><td><?php echo $this->escape($album->photographer) ?></td></tr>
+			<tr><td>Адрес эл.почты</td><td><?php echo $this->escape($album->email) ?></td></tr>
+			<tr><td>Телефон</td><td><?php echo $this->escape($album->phone) ?></td></tr>
+			<tr><td>Фотографий в альбоме</td><td><?php echo count($this->photos->getPhotos($album->id)) ?></td></tr>
+			<tr><td>Дата создания</td><td><?php echo date("H:i:s F,d Y", $this->escape($album->creation_date)) ?></td></tr>
+			<?php if ($this->escape($album->modification_date) != null) { ?>
+				<tr><td>Изменен</td><td><?php echo date("H:i:s F,d Y", $this->escape($album->modification_date)) ?></td></tr>
+			<?php } ?>
+		</table>
+	</div>
+	
+	<?php $last_photo = $this->photos->getLastPhoto($album->id); 
+	if ($last_photo !=null) {
+	?>	
+		<div class="album_last_photo">
+			<img class="album_last_photo_picture" src="<?php echo $this->baseUrl();?>/images/<?php echo $last_photo->filename;?>" onload="resize(this)"/>
+		</div>
+		<div class="album_last_photo_date">
+			Добавлена:<?php echo date("H:i:s F,d Y", $this->escape($last_photo->creation_date));?> 
+		</div>
+	<?php }?>
+	
+</div>	
+<?php endforeach; ?>

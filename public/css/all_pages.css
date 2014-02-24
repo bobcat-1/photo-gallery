@@ -1,0 +1,19 @@
+#site {
+	margin: 0 auto;
+	width: 920px;
+}
+#content {
+	font-family: Verdana;
+	padding: 10px 10px 10px 10px;
+}
+a:link, a:visited {
+	color: #228B22;
+}
+#top {
+	background-color: #228B22;
+	color: white;
+	text-align: right;
+	padding: 25px 10px 25px 0;
+	font-family: Verdana;
+	font-size: 5em;
+}

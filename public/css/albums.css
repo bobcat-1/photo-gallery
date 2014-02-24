@@ -1,0 +1,34 @@
+.album {
+	padding: 15px 0 15px 15px;
+	margin: 10px;
+	height: 150px;
+	width: 890px;
+	border-bottom: solid 1px grey;
+}
+
+.album_description {
+	float: left;
+	width: 50%;
+}
+
+.album_description_table {
+	color: grey;
+	font-size: 0.7em;
+}
+
+.album_last_photo {
+	float: left;
+	width: 150px;
+}
+
+.album_last_photo_picture {
+	position: relative;
+}
+
+.album_last_photo_date {
+	position: relative;
+	color: grey;
+	font-size: 0.7em;
+	top: 45%;
+	left: 10px;
+}

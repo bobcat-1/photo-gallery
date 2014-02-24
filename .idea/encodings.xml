@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/application/controllers/IndexController.php" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/application/controllers/PhotosController.php" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/application/forms/Album.php" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/application/forms/Photo.php" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/application/layouts/scripts/layout.phtml" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/application/views/scripts/index/index.phtml" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/application/views/scripts/photos/index.phtml" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/application/views/scripts/photos/Копия index.phtml" charset="windows-1251" />
+    <file url="PROJECT" charset="windows-1251" />
+  </component>
+</project>
+

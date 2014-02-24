@@ -1,0 +1,51 @@
+<form enctype="multipart/form-data" action="<?php echo $this->url(array('action'=>'add')); ?>" method="post">
+Добавить фото
+<div>
+	
+	Выверите файл<input type="file" name="filename" value="" /><br />
+	Заголовок фото<input type="text" name="title" value="" /><br />
+	Адрес фотосъемки<input type="text" name="address_photo" value="" /><br />
+	
+	Выберите в какой альбом поместить фото <br />
+	<?php 
+	if ($this->album_id != null) { ?>
+		Фото будет помещено в альбом с id = <?php echo $this->album_id; ?>
+		<input type="hidden" name="album_id" value="<?php echo $this->album_id; ?>" />
+	<?php
+	} else {
+	?>
+	<select name="album_id">
+		<?php foreach($this->albums as $album) : ?>
+			<option label="<?php echo $this->escape($album->name);?>">
+				<?php echo $this->escape($album->id);?>
+			</option>
+		<?php endforeach;?>
+	</select>
+	<?php 
+	}?>
+	
+	<br />
+	<input type="submit" name="add" value="Добавить" />
+</div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form>
+	Заголовок<input type="text" name="title" value="<?php echo $this->title?>" /><br />
+	Адрес фото<input type="text" name="address_photo" value="<?php echo $this->address_photo?>" /><br />
+	<input type="submit" value="Ок" />
+</form>

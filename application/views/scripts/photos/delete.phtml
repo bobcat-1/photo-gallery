@@ -1,0 +1,10 @@
+<p>Are you sure that you want to delete photo
+	'<?php echo $this->escape($this->photo->filename); ?>'?
+</p>
+<form action="<?php echo $this->url(array('action'=>'delete')); ?>" method="post">
+<div>
+	<input type="hidden" name="id" value="<?php echo $this->photo->id; ?>" />
+	<input type="submit" name="del" value="Да" />
+	<input type="submit" name="del" value="Нет" />
+</div>
+</form>

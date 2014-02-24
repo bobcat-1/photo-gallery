@@ -1,0 +1,36 @@
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/photos.css'); ?>
+<?php 
+	echo $this->headScript()->appendFile($this->baseUrl().'/js/album.js', 'text/javascript')
+                   ->appendScript($onloadScript);
+?>
+
+<div class="album_title">
+	<b>Альбом: <?php echo $this->album_name;?></b>
+	<?php echo " | ";?>
+	<a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'add', 'id' => null)) ?>">Добавить фотографию</a>
+</div>
+
+<div class="album">
+<?php foreach($this->photos as $photo) : ?>
+<div class="photo">
+	<div class="photo_top">
+		<a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'show', 'id' => $photo->id)) ?>">
+			<?php echo $this->escape($photo->filename);?></a>
+		<?php echo " | ";?>
+		<a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'edit', 'id' => $photo->id)) ?>">Редактировать</a>
+		<?php echo " | ";?>
+		<a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'delete', 'id' => $photo->id)) ?>">Удалить</a><br />
+	</div>
+	<div class="photo_picture_border">
+		<a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'show', 'id' => $photo->id)) ?>">
+			<img class="photo_picture" src="<?php echo $this->baseUrl();?>/images/<?php echo $photo->filename;?>" onload = "resize(this)"/>
+		</a>
+	</div>
+	<div class="photo_bottom">
+		Заголовок: <?php echo $this->escape($photo->title);?><br/>
+		Адрес фото: <?php echo $this->escape($photo->address_photo);?><br />
+		Создано: <?php echo date("H:i:s F,d Y", $this->escape($photo->creation_date));?>
+	</div>
+</div>
+<?php endforeach; ?>
+</div>
