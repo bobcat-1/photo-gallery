@@ -10,6 +10,6 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $this->view->title = "My Albums";
+        $this->view->title = "";
     }
 }

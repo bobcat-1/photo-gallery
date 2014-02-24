@@ -16,7 +16,9 @@
 		Photo Gallery
 	</div>
 	<div id="content">
-		<a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index', 'id' => null, 'album_id' => null)) ?>">Альбомы</a>
+        <?php if(Account::checkAccess()): ?>
+            <a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index', 'id' => null, 'album_id' => null)) ?>">Альбомы</a>
+        <?php endif;?>
 	<h1><?php echo $this->escape($this->title); ?></h1>
 	<?php echo $this->layout()->content; ?>
 	</div>
