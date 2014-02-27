@@ -17,3 +17,23 @@ a:link, a:visited {
 	font-family: Verdana;
 	font-size: 5em;
 }
+
+dl {
+    font-size: 0.9em;
+}
+
+dt {
+    display: block;
+    float: left;
+    width: 110px;
+}
+
+dd {
+    margin-left: 0;
+    display: block;
+}
+
+#album_id_form-label {
+    display: block;
+    width: 250px;
+}

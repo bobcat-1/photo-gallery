@@ -18,12 +18,12 @@ class Application_Form_Photo extends Zend_Form
         
 		
 		$title = new Zend_Form_Element_Text('title');
-		$title->setLabel('Заголовок фото*')
+		$title->setLabel('Title photo*')
 					->setRequired(true)
 					->addValidator('NotEmpty');
 					
 		$address_photo = new Zend_Form_Element_Text('address_photo');
-		$address_photo->setLabel('Место фотосъемки')
+		$address_photo->setLabel('Place')
 					->addValidator('NotEmpty');
 		
         

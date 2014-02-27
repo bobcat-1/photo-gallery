@@ -68,7 +68,7 @@ class PhotosController extends Zend_Controller_Action
 		$this->view->message='';
 		
 		$file = new Zend_Form_Element_File('file');
-		$file->setLabel('Загружаемый файл*')
+		$file->setLabel('Uploaded file*')
 					->setRequired(true);
 		$file->setDestination($_SERVER["DOCUMENT_ROOT"] . $this->view->baseUrl() . '/images');	
         
@@ -86,7 +86,7 @@ class PhotosController extends Zend_Controller_Action
 		if ($album_id != null) {
 			$albums = new Application_Model_DbTable_Albums();
 			$album = $albums->fetchRow('id = ' . $album_id);
-			$this->view->message = 'Фото будет помещено в альбом ' . $album->name;
+			$this->view->message = 'Photo will be place to album ' . $album->name;
 			$h = new Zend_Form_Element_Hidden('album_id_form');
 			$form->addElement($h);
 			$form->album_id_form->setValue($album_id);
@@ -100,7 +100,7 @@ class PhotosController extends Zend_Controller_Action
 			}
 					
 			$form->addElement('select', 'album_id_form', array(
-				'label'      => 'Выберите в какой альбом поместить фото:',
+				'label'      => 'Choose the album to place photo:',
 				'multiOptions'=> $options_array
 				)
 			);
@@ -108,7 +108,7 @@ class PhotosController extends Zend_Controller_Action
 		}
 		
 		$submit = new Zend_Form_Element_Submit('submit');
-        $submit->setLabel('Отправить');
+        $submit->setLabel('Send');
 		$form->addElement($submit);
 		
 		if ($this->_request->isPost()) {

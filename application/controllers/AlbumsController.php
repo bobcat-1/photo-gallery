@@ -5,6 +5,7 @@ class AlbumsController extends Zend_Controller_Action
 
     public function init()
     {
+        $this->CheckAccess();
         /* Initialize action controller here */
     }
 
@@ -104,6 +105,10 @@ class AlbumsController extends Zend_Controller_Action
 		// action body
     }
 
+    public function CheckAccess()
+    {
+        Account::checkAccess();
+    }
 }
 
 
