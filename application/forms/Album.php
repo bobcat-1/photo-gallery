@@ -16,16 +16,16 @@ class Application_Form_Album extends Zend_Form
 		$id->addFilter('Int');
 
 		$name = new Zend_Form_Element_Text('name');
-		$name->setLabel('Название альбома*')->setRequired(true)->addFilter('StripTags')->addFilter('StringTrim')->addValidator('NotEmpty');
+		$name->setLabel('Album\'s Name*')->setRequired(true)->addFilter('StripTags')->addFilter('StringTrim')->addValidator('NotEmpty');
 
 		$description = new Zend_Form_Element_Text('description');
-		$description->setLabel('Описание*')->setRequired(true)->addFilter('StripTags')->addFilter('StringTrim')->addValidator('NotEmpty');
+		$description->setLabel('Description*')->setRequired(true)->addFilter('StripTags')->addFilter('StringTrim')->addValidator('NotEmpty');
 		
 		$photographer = new Zend_Form_Element_Text('photographer');
-		$photographer->setLabel('Фотограф*')->setRequired(true)->addFilter('StripTags')->addFilter('StringTrim')->addValidator('NotEmpty');
+		$photographer->setLabel('Photographer*')->setRequired(true)->addFilter('StripTags')->addFilter('StringTrim')->addValidator('NotEmpty');
 		
 		$email = new Zend_Form_Element_Text('email');
-		$email->setLabel('Адрес эл.почты')->addFilter('StripTags')->addFilter('StringTrim')->addValidator('NotEmpty')
+		$email->setLabel('e-mail')->addFilter('StripTags')->addFilter('StringTrim')->addValidator('NotEmpty')
 			->addValidator(new Zend_Validate_EmailAddress());
 		
 		
@@ -35,7 +35,7 @@ class Application_Form_Album extends Zend_Form
 		
 		$phone = new Zend_Form_Element_Text('phone');
 		$phone->addValidator($telValidator, true);
-		$phone->setLabel('Телефон')->addFilter('StripTags')->addFilter('StringTrim')->addValidator('NotEmpty');
+		$phone->setLabel('Phone')->addFilter('StripTags')->addFilter('StringTrim')->addValidator('NotEmpty');
 		
 		$submit = new Zend_Form_Element_Submit('submit');
 		$submit->setAttrib('id', 'submitbutton');

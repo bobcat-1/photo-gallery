@@ -26,7 +26,7 @@ class AlbumsController extends Zend_Controller_Action
         $this->view->title = "Add new album";
 		$this->view->headTitle($this->view->title);
 		$form = new Application_Form_Album();
-		$form->submit->setLabel('Добавить');
+		$form->submit->setLabel('Add');
 		$this->view->form = $form;
 
 		if ($this->getRequest()->isPost()) {
