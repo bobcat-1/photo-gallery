@@ -16,10 +16,13 @@
 	<div class="photo_top">
 		<a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'show', 'id' => $photo->id)) ?>">
 			<?php echo $this->escape($photo->filename);?></a>
-		<?php echo " | ";?>
-		<a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'edit', 'id' => $photo->id)) ?>">Редактировать</a>
-		<?php echo " | ";?>
-		<a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'delete', 'id' => $photo->id)) ?>">Удалить</a><br />
+
+        <?php if($this->user_id == $_SESSION['owner_id']):?>
+            <?php echo " | ";?>
+            <a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'edit', 'id' => $photo->id)) ?>">Редактировать</a>
+            <?php echo " | ";?>
+            <a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'delete', 'id' => $photo->id)) ?>">Удалить</a><br />
+        <?php endif;?>
 	</div>
 	<div class="photo_picture_border">
 		<a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'show', 'id' => $photo->id)) ?>">

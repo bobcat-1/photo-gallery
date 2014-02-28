@@ -16,6 +16,7 @@ class PhotosController extends Zend_Controller_Action
 		$albums = new Application_Model_DbTable_Albums();
 		$album = $albums->fetchRow('id = ' . $album_id);
 		$this->view->album_name = $album->name;
+        $this->view->user_id = $album->owner_id;
 		
 		$this->view->title = $album->name;
 		$this->view->headTitle($this->view->title);
