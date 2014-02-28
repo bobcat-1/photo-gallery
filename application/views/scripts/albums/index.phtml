@@ -6,10 +6,11 @@ echo $this->headScript()->appendFile($this->baseUrl().'/js/albums.js', 'text/jav
 
 
 
+<?php //if($this->user_id == $_SESSION['owner_id']): ?>
+    <p><a href="<?php echo $this->url(array('controller' => 'albums', 'action' => 'add')) ?>">Добавить новый альбом</a></p>
 
-<p><a href="<?php echo $this->url(array('controller' => 'albums', 'action' => 'add')) ?>">Добавить новый альбом</a></p>
-
-<p><a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'add')) ?>">Добавить фотографию в галерею</a></p>
+    <p><a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'add')) ?>">Добавить фотографию в галерею</a></p>
+<?php //endif; ?>
 
 <?php foreach($this->albums as $album) : ?>
 <div class="album">
@@ -17,13 +18,17 @@ echo $this->headScript()->appendFile($this->baseUrl().'/js/albums.js', 'text/jav
 		<a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'index', 'album_id' => $album->id)) ?>">
 			<?php echo $this->escape($album->name) ?></a>
 
-		<a href="<?php echo $this->url(array('controller' => 'albums', 'action' => 'edit', 'id' => $album->id)) ?>">Редактировать</a>
-		
-		<?php echo " | " ?>
-		
-		<a href="<?php echo $this->url(array('controller' => 'albums', 'action' => 'delete', 'id' => $album->id)) ?>">Удалить</a>
+        <?php //if($this->user_id == $_SESSION['owner_id']): ?>
 
-		<table class="album_description_table">
+            <a href="<?php echo $this->url(array('controller' => 'albums', 'action' => 'edit', 'id' => $album->id)) ?>">Редактировать</a>
+		
+		    <?php echo " | " ?>
+		
+		    <a href="<?php echo $this->url(array('controller' => 'albums', 'action' => 'delete', 'id' => $album->id)) ?>">Удалить</a>
+
+		<?php //endif; ?>
+
+        <table class="album_description_table">
 			<tr><td>Описание</td><td><?php echo $this->escape($album->description) ?></td></tr>
 			<tr><td>Имя фотографа</td><td><?php echo $this->escape($album->photographer) ?></td></tr>
 			<tr><td>Адрес эл.почты</td><td><?php echo $this->escape($album->email) ?></td></tr>

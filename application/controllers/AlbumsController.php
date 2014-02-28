@@ -2,19 +2,33 @@
 
 class AlbumsController extends Zend_Controller_Action
 {
+    protected $_user_id;
 
     public function init()
     {
         $this->CheckAccess();
+        $user_id = $this->_getParam('id', $_SESSION['owner_id']);
+        if(isset($user_id)){
+            $this->setUserId($user_id);
+            $this->view->user_id = $this->getUserId();
+        }else{
+            throw new Exception('Page not found', 404);
+        }
         /* Initialize action controller here */
     }
 
     public function indexAction()
     {
-        $this->view->title = "My Albums";
+        if($this->getUserId() == $_SESSION['owner_id']) {
+            $this->view->title = "My Albums";
+        }else{
+            $users = new Application_Model_DbTable_Users();
+            $user = $users->getUserById($this->getUserId());
+            $this->view->title = "Albums of " . $user->login;
+        }
 		$this->view->headTitle($this->view->title);
 		$albums = new Application_Model_DbTable_Albums();
-		$this->view->albums = $albums->fetchAll();
+		$this->view->albums = $albums->getAllAlbums($this->getUserId());
 		
 		$this->view->photos = new Application_Model_DbTable_Photos();
 
@@ -51,6 +65,9 @@ class AlbumsController extends Zend_Controller_Action
 
     public function editAction()
     {
+        $album_id = $this->_getParam('id', 0);
+        Account::isAblumOwner($album_id);
+
         $this->view->title = "Edit album";
 		$this->view->headTitle($this->view->title);
 		$form = new Application_Form_Album();
@@ -87,6 +104,9 @@ class AlbumsController extends Zend_Controller_Action
 
     public function deleteAction()
     {
+        $album_id = $this->_getParam('id', 0);
+        Account::isAblumOwner($album_id);
+
         $this->view->title = "Delete album";
 		$this->view->headTitle($this->view->title);
 		if ($this->getRequest()->isPost()) {
@@ -108,6 +128,22 @@ class AlbumsController extends Zend_Controller_Action
     public function CheckAccess()
     {
         Account::checkAccess();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserId()
+    {
+        return $this->_user_id;
+    }
+
+    /**
+     * @param mixed $user_id
+     */
+    public function setUserId($user_id)
+    {
+        $this->_user_id = $user_id;
     }
 }
 

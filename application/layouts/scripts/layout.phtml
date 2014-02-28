@@ -19,6 +19,9 @@
         <?php //if(Account::checkAccess()): ?>
             <a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index', 'id' => null, 'album_id' => null)) ?>">To Home</a>
         <?php //endif;?>
+        <?php if(Account::isAuthorizated()):?>
+            <a href="/public/index/index/a/logout">Log Out</a>
+        <?php endif;?>
 	<h1><?php echo $this->escape($this->title); ?></h1>
 	<?php echo $this->layout()->content; ?>
 	</div>

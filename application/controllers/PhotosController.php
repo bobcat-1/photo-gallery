@@ -5,6 +5,7 @@ class PhotosController extends Zend_Controller_Action
 
     public function init()
     {
+        $this->CheckAccess();
         $this->_redirector = $this->_helper->getHelper('Redirector');
 		/* Initialize action controller here */
     }
@@ -37,6 +38,9 @@ class PhotosController extends Zend_Controller_Action
 
     public function deleteAction()
     {
+        $photo_id	= $this->_getParam('id',0);
+        Account::isPhotoOwner($photo_id);
+
         $this->view->title = "Delete this photo?";
 		$this->view->headTitle($this->view->title);
 		if ($this->getRequest()->isPost()) {
@@ -84,6 +88,8 @@ class PhotosController extends Zend_Controller_Action
 		//echo $album_id;
 		
 		if ($album_id != null) {
+            Account::isAblumOwner($album_id);
+
 			$albums = new Application_Model_DbTable_Albums();
 			$album = $albums->fetchRow('id = ' . $album_id);
 			$this->view->message = 'Photo will be place to album ' . $album->name;
@@ -93,7 +99,7 @@ class PhotosController extends Zend_Controller_Action
 				
 		} else {
 			$albums = new Application_Model_DbTable_Albums();
-			$this->view->albums = $albums->fetchAll()	;
+			$this->view->albums = $albums->getAllAlbums($_SESSION['owner_id'])	;
 			
 			foreach ($this->view->albums as $album) {
 				$options_array[$this->view->escape($album->id)] = $this->view->escape($album->name);
@@ -143,6 +149,9 @@ class PhotosController extends Zend_Controller_Action
 
     public function editAction()
     {
+        $photo_id	= $this->_getParam('id',0);
+        Account::isPhotoOwner($photo_id);
+
         $this->view->title = "Edit description photo";
 		$this->view->headTitle($this->view->title);
 		
@@ -179,7 +188,10 @@ class PhotosController extends Zend_Controller_Action
 		// action body
     }
 
-
+    public function CheckAccess()
+    {
+        Account::checkAccess();
+    }
 }
 
 

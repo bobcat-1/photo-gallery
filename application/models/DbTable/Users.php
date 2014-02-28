@@ -12,4 +12,9 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
         ));
         return $user;
     }
+
+    public function getUserById($user_id){
+        $user = $this->fetchRow('user_id = ' . $user_id);
+        return $user;
+    }
 }
