@@ -2,6 +2,7 @@
 
 class ErrorController extends Zend_Controller_Action
 {
+    const DeveloperMode = false;
 
     public function errorAction()
     {

@@ -5,6 +5,8 @@
   <title>Zend Framework Default Application</title>
 </head>
 <body>
+
+<?php if(ErrorController::DeveloperMode):?>
   <h1>An error occurred</h1>
   <h2><?php echo $this->message ?></h2>
 
@@ -24,6 +26,9 @@
   </pre>
 
   <?php endif ?>
-
+<?php else: ?>
+  <h3><?php echo "Page cannot be displayed"?></h3>
+  <span style="color: red"><?php echo $this->exception->getMessage(); ?></span>
+<?php endif; ?>
 </body>
 </html>
