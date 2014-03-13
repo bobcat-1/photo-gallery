@@ -37,3 +37,11 @@ dd {
     display: block;
     width: 250px;
 }
+
+ul.errors {
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+    list-style-type: none;
+    font-size: 0.8em;
+    color: red;
+}

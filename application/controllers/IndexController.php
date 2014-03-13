@@ -27,8 +27,10 @@ class IndexController extends Zend_Controller_Action
                     $user = Account::authorize($login, $password);
                     if($user){
                         $this->_redirector->gotoUrl('/albums/index/id/' . $user->user_id);
+                    }else{
+                        $form->populate(array($login, $password));
+                        $this->view->notification = "Incorrect login or password";
                     }
-                    $this->_redirector->gotoUrl('/');
                 } else {
                     $form->populate($formData);
                 }

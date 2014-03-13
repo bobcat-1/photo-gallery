@@ -24,7 +24,10 @@ class PhotosController extends Zend_Controller_Action
 		$photos = new Application_Model_DbTable_Photos();
 		$this->view->photos = $photos->getPhotos($album_id);
 
-		
+		$path = $_SERVER['DOCUMENT_ROOT'].'/public/images/';
+        foreach ($this->view->photos as $photo){
+           Thumbnails::getThumbnail($path.'thumbnail_'.$photo->filename, $path.$photo->filename);
+        }
 		// action body
     }
 
@@ -65,10 +68,8 @@ class PhotosController extends Zend_Controller_Action
 
     public function addAction()
     {
-		$this->view->title = "Add new photo";
-		$this->view->headTitle($this->view->title);
 		$form = new Application_Form_Photo();
-		
+
 		$this->view->form = $form;
 		$this->view->message='';
 		
@@ -113,7 +114,10 @@ class PhotosController extends Zend_Controller_Action
 			);
 			$album_id = $form->album_id;
 		}
-		
+
+        $this->view->title = "Add new photo";
+        $this->view->headTitle($this->view->title);
+
 		$submit = new Zend_Form_Element_Submit('submit');
         $submit->setLabel('Send');
 		$form->addElement($submit);
