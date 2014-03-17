@@ -26,7 +26,7 @@
 	</div>
 	<div class="photo_picture_border">
 		<a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'show', 'id' => $photo->id)) ?>">
-			<img class="photo_picture" src="<?php echo $this->baseUrl();?>/images/<?php echo $photo->filename;?>" onload = "resize(this)"/>
+			<img class="photo_picture" src="<?php echo $this->baseUrl();?>/images/thumbnail_<?php echo $photo->filename;?>" onload = "resize(this)"/>
 		</a>
 	</div>
 	<div class="photo_bottom">

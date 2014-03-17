@@ -15,9 +15,11 @@ echo $this->headScript()->appendFile($this->baseUrl().'/js/albums.js', 'text/jav
 <?php foreach($this->albums as $album) : ?>
 <div class="album">
 	<div class="album_description">
-		<a href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'index', 'album_id' => $album->id)) ?>">
-			<?php echo $this->escape($album->name) ?></a>
-
+		<a class="album_name_link" href="<?php echo $this->url(array('controller' => 'photos', 'action' => 'index', 'album_id' => $album->id)) ?>">
+            <span class="album_name">
+                <?php echo $this->escape($album->name) ?>
+            </span>
+        </a>
         <?php if($this->user_id == $_SESSION['owner_id']): ?>
 
             <a href="<?php echo $this->url(array('controller' => 'albums', 'action' => 'edit', 'id' => $album->id)) ?>">Редактировать</a>
@@ -45,7 +47,7 @@ echo $this->headScript()->appendFile($this->baseUrl().'/js/albums.js', 'text/jav
 	if ($last_photo !=null) {
 	?>	
 		<div class="album_last_photo">
-			<img class="album_last_photo_picture" src="<?php echo $this->baseUrl();?>/images/<?php echo $last_photo->filename;?>" onload="resize(this)"/>
+			<img class="album_last_photo_picture" src="<?php echo $this->baseUrl();?>/images/thumbnail_<?php echo $last_photo->filename;?>" onload="resize(this)"/>
 		</div>
 		<div class="album_last_photo_date">
 			Добавлена:<?php echo date("H:i:s F,d Y", $this->escape($last_photo->creation_date));?> 

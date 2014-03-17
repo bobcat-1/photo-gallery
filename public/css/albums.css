@@ -6,6 +6,15 @@
 	border-bottom: solid 1px grey;
 }
 
+.album_name_link {
+    font-weight: bold;
+    text-decoration: none
+}
+
+.album_name {
+
+}
+
 .album_description {
 	float: left;
 	width: 50%;

@@ -19,6 +19,7 @@ require_once 'Zend/Application.php';
 
 /** include files */
 require_once '/../includes/Account.php';
+require_once '/../includes/Thumbnails.php';
 
 // Create application, bootstrap, and run
 $application = new Zend_Application(
